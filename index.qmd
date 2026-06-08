@@ -1,0 +1,18 @@
+---
+title: "The Energy Modeller’s Compass"
+subtitle: "Decision-support modelling for energy systems"
+---
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/datejada/COMPASS/HEAD)
+
+COMPASS is a book project for computational models that help plan and support energy systems. It uses Quarto so prose, equations, Python examples, Julia examples, citations, and cross-references can live in one coherent source project.
+
+The chapter structure is scaffolded for the main modelling topics:
+
+- chapters are written in `.qmd`;
+- each chapter is a folder with one file per subchapter;
+- Python and Julia examples live in `examples/`;
+- every example is executable in CI;
+- the rendered HTML book is published to GitHub Pages.
+
+The project follows the Quarto book approach described in @quarto.

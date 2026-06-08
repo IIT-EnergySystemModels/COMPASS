@@ -1,0 +1,46 @@
+project:
+  type: book
+  output-dir: _site
+
+book:
+  title: "The Energy Modeller’s Compass"
+  subtitle: "Decision-support modelling for energy systems"
+  author: "Andrés Ramos and Diego Tejada"
+  site-url: "https://datejada.github.io/COMPASS/"
+  repo-url: "https://github.com/datejada/COMPASS"
+  repo-actions: [edit, issue]
+  chapters:
+    - index.qmd
+    - chapters/01-primer/index.qmd
+    - part: "chapters/02-economic-dispatch/index.qmd"
+      chapters:
+        - chapters/02-economic-dispatch/03-example-in-python.qmd
+    - chapters/03-unit-commitment/index.qmd
+    - chapters/04-multi-node-models/index.qmd
+    - chapters/05-generation-expansion-planning/index.qmd
+    - chapters/06-transmission-expansion-planning/index.qmd
+    - chapters/07-stochastic-optimisation/index.qmd
+    - chapters/08-decomposition-methods/index.qmd
+    - chapters/09-aggregation-methods/index.qmd
+    - chapters/10-advanced-topics/index.qmd
+    - chapters/references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    number-sections: true
+    code-copy: true
+    code-overflow: wrap
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+  cache: true
+  execute-dir: project

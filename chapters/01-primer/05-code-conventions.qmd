@@ -1,0 +1,13 @@
+## Code conventions
+
+- Must be defined in blocks. For example, a set and all its subsets
+should constitute one block in the sets section.
+- Names are intended to be meaningful. Follow conventions
+  - Items with the same name represent the same concept in different
+models
+  - Units should be used in all definitions
+  - Parameters are named pParameterName (e.g., pOperReserveDw)
+  - Variables are named vVariableName (e.g., vReserveDown)
+  - Equations are named eEquationName (e.g., eOperReserveDw)
+  - Use short set names (one or two letters) for easier reading
+- Equations are laid out as clearly as possible

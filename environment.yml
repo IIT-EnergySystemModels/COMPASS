@@ -1,0 +1,17 @@
+name: compass-book
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - quarto
+  - "uv>=0.8,<0.9"
+  - pip
+  - "ipykernel>=6.29,<7"
+  - "jupyterlab>=4.2,<5"
+  - "matplotlib>=3.9,<4"
+  - "numpy>=2.0,<3"
+  - "pandas>=2.2,<3"
+  - "pyomo>=6.10,<7"
+  - "highspy>=1.14,<2"
+  - pip:
+      - "julia>=0.6,<0.7"

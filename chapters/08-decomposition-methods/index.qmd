@@ -1,0 +1,9 @@
+# Decomposition Methods
+
+{{< include 01-benders.qmd >}}
+
+{{< include 02-lagrangian-relaxation.qmd >}}
+
+{{< include 03-column-generation.qmd >}}
+
+{{< include 04-branch-and-price.qmd >}}

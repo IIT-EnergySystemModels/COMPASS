@@ -1,0 +1,5 @@
+## Description
+
+_"A mathematical framework used to quantify uncertainty before being surprised anyway."_ - Unknown
+
+<!-- TODO: Add section content. -->

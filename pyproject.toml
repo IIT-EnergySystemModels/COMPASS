@@ -1,0 +1,18 @@
+[project]
+name = "compass-book"
+version = "0.1.0"
+description = "Quarto book for energy-system decision-support modelling examples."
+requires-python = ">=3.12"
+dependencies = [
+    "highspy>=1.14,<2",
+    "ipykernel>=6.29,<7",
+    "jupyter-cache>=1,<2",
+    "jupyterlab>=4.2,<5",
+    "matplotlib>=3.9,<4",
+    "numpy>=2.0,<3",
+    "pandas>=2.2,<3",
+    "pyomo>=6.10,<7",
+]
+
+[tool.uv]
+package = false
