@@ -55,6 +55,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+          retention-days: 7
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
