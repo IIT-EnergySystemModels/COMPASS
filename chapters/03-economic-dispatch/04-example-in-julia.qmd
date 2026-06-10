@@ -1,0 +1,49 @@
+## Example in Julia
+
+This example solves the economic dispatch problem with JuMP and HiGHS. The reusable implementation lives in `examples/julia/dispatch_model.jl`; this section includes that script, defines a small generator fleet, and reports the least-cost dispatch.
+
+```{julia}
+include(joinpath(@__DIR__, "..", "..", "examples", "julia", "dispatch_model.jl"))
+using .DispatchModel
+```
+
+The generator data include a zero-marginal-cost wind unit, a low-cost solar unit, and a gas unit that covers the remaining demand.
+
+```{julia}
+generators = [
+    Generator("wind", 0.0, 35.0),
+    Generator("solar", 3.0, 25.0),
+    Generator("gas", 75.0, 60.0),
+]
+
+demand = 80.0
+```
+
+The solver chooses generation from the cheapest available units first, while enforcing the demand balance and each unit's capacity limit.
+
+```{julia}
+dispatch = merit_order_dispatch(demand, generators)
+cost = total_cost(dispatch, generators)
+
+dispatch, cost
+```
+
+The solution uses all available wind and solar output, then dispatches gas for the remaining demand.
+
+```{julia}
+for (generator_name, output) in dispatch
+    println("$generator_name: $(round(output; digits = 1)) MW")
+end
+
+println("Total cost: $(round(cost; digits = 2))")
+```
+
+If demand exceeds total available capacity, the model is infeasible and the example raises a clear error.
+
+```{julia}
+try
+    merit_order_dispatch(200.0, generators)
+catch error
+    println(error)
+end
+```

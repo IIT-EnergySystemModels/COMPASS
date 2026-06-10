@@ -1,7 +1,5 @@
 # Advanced Topics
 
-{{< include 01-multi-year-investment.qmd >}}
+{{< include 01-rolling-horizon.qmd >}}
 
-{{< include 02-rolling-horizon.qmd >}}
-
-{{< include 03-good-optimisation-modelling-practices.qmd >}}
+{{< include 02-multi-year-investment.qmd >}}

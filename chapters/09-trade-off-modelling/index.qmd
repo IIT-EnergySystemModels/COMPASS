@@ -1,0 +1,7 @@
+# Aggregation Methods
+
+{{< include 01-representative-periods.qmd >}}
+
+{{< include 02-network-reduction.qmd >}}
+
+{{< include 03-clustered-unit-commitment.qmd >}}
