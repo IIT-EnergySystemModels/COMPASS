@@ -6,8 +6,8 @@ book:
   title: "The Energy Modeller’s Compass"
   subtitle: "Decision-support modelling for energy systems"
   author: "Andrés Ramos and Diego Tejada"
-  site-url: "https://datejada.github.io/COMPASS/"
-  repo-url: "https://github.com/datejada/COMPASS"
+  site-url: "https://iit-energysystemmodels.github.io/COMPASS/"
+  repo-url: "https://github.com/IIT-EnergySystemModels/COMPASS"
   repo-actions: [edit, issue]
   chapters:
     - index.qmd

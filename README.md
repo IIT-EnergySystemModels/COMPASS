@@ -4,9 +4,9 @@
 
 This repository is structured as a Quarto book for bilingual Python and Julia examples in energy-system decision-support modelling.
 
-[![Render Quarto book](https://github.com/datejada/COMPASS/actions/workflows/render-book.yml/badge.svg)](https://github.com/datejada/COMPASS/actions/workflows/render-book.yml)
-[![Test examples](https://github.com/datejada/COMPASS/actions/workflows/test-examples.yml/badge.svg)](https://github.com/datejada/COMPASS/actions/workflows/test-examples.yml)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/datejada/COMPASS/HEAD)
+[![Render Quarto book](https://github.com/IIT-EnergySystemModels/COMPASS/actions/workflows/render-book.yml/badge.svg)](https://github.com/IIT-EnergySystemModels/COMPASS/actions/workflows/render-book.yml)
+[![Test examples](https://github.com/IIT-EnergySystemModels/COMPASS/actions/workflows/test-examples.yml/badge.svg)](https://github.com/IIT-EnergySystemModels/COMPASS/actions/workflows/test-examples.yml)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IIT-EnergySystemModels/COMPASS/HEAD)
 
 ## Repository layout
 

@@ -3,7 +3,7 @@ title: "The Energy Modeller’s Compass"
 subtitle: "Decision-support modelling for energy systems"
 ---
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/datejada/COMPASS/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IIT-EnergySystemModels/COMPASS/HEAD)
 
 COMPASS is a book project for computational models that help plan and support energy systems. It uses Quarto so prose, equations, Python examples, Julia examples, citations, and cross-references can live in one coherent source project.
 
