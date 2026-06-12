@@ -4,6 +4,11 @@
 
 This repository is structured as a Quarto book for bilingual Python and Julia examples in energy-system decision-support modelling.
 
+You can read the book and follow the examples online at [COMPASS](https://iit-energysystemmodels.github.io/COMPASS/).
+
+The source code is available in this repository, and you can run the examples locally or in Binder.
+
+[![Static Badge](https://img.shields.io/badge/Book-stable-blue?style=flat&logo=quarto&logoSize=auto)](https://iit-energysystemmodels.github.io/COMPASS/)
 [![Render Quarto book](https://github.com/IIT-EnergySystemModels/COMPASS/actions/workflows/render-book.yml/badge.svg)](https://github.com/IIT-EnergySystemModels/COMPASS/actions/workflows/render-book.yml)
 [![Test examples](https://github.com/IIT-EnergySystemModels/COMPASS/actions/workflows/test-examples.yml/badge.svg)](https://github.com/IIT-EnergySystemModels/COMPASS/actions/workflows/test-examples.yml)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IIT-EnergySystemModels/COMPASS/HEAD)
