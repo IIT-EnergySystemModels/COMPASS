@@ -2,7 +2,7 @@
 jupyter: compass-python
 ---
 
-## Example in Python
+## Dispatch Model
 
 This example solves the economic dispatch problem with Pyomo and HiGHS. The reusable implementation lives in `examples/python/dispatch_model.py`; this section imports that script, defines a small generator fleet, and reports the least-cost dispatch.
 

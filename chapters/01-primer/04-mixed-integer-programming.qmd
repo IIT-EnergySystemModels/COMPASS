@@ -1,3 +1,0 @@
-## Mixed-integer programming
-
-<!-- TODO: Add section content. -->

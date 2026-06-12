@@ -1,3 +1,0 @@
-## Column Generation
-
-<!-- TODO: Add section content. -->

@@ -11,18 +11,19 @@ book:
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
-    - chapters/01-primer/index.qmd
-    - part: "chapters/02-economic-dispatch/index.qmd"
-      chapters:
-        - chapters/02-economic-dispatch/03-example-in-python.qmd
+    - chapters/01-introduction/index.qmd
+    - chapters/02-economic-dispatch/index.qmd
+    - chapters/02-economic-dispatch/index-examples-in-python.qmd
+    - chapters/02-economic-dispatch/index-examples-in-julia.qmd
     - chapters/03-unit-commitment/index.qmd
-    - chapters/04-multi-node-models/index.qmd
-    - chapters/05-generation-expansion-planning/index.qmd
-    - chapters/06-transmission-expansion-planning/index.qmd
-    - chapters/07-stochastic-optimisation/index.qmd
-    - chapters/08-decomposition-methods/index.qmd
-    - chapters/09-aggregation-methods/index.qmd
-    - chapters/10-advanced-topics/index.qmd
+    - chapters/04-stochastic-optimisation/index.qmd
+    - chapters/05-hydrothermal-scheduling/index.qmd
+    - chapters/06-generation-expansion-planning/index.qmd
+    - chapters/07-decomposition-methods/index.qmd
+    - chapters/08-network-constrained/index.qmd
+    - chapters/09-transmission-expansion-planning/index.qmd
+    - chapters/10-trade-off-modelling/index.qmd
+    - chapters/11-advanced-topics/index.qmd
     - chapters/references.qmd
 
 bibliography: references.bib

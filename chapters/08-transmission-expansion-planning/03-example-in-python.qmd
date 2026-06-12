@@ -1,3 +1,0 @@
-## Example in Python
-
-<!-- TODO: Add section content. -->

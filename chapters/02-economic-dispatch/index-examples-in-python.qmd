@@ -1,0 +1,3 @@
+# Economic Dispatch - Examples in Python {.unnumbered}
+
+{{< include 03-example-in-python.qmd >}}

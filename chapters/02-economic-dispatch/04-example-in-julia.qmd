@@ -1,4 +1,4 @@
-## Example in Julia
+## Dispatch Model
 
 This example solves the economic dispatch problem with JuMP and HiGHS. The reusable implementation lives in `examples/julia/dispatch_model.jl`; this section includes that script, defines a small generator fleet, and reports the least-cost dispatch.
 

@@ -1,3 +1,0 @@
-## Lagrangian Relaxation
-
-<!-- TODO: Add section content. -->

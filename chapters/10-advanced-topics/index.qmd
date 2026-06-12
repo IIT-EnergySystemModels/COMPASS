@@ -1,5 +1,0 @@
-# Advanced Topics
-
-{{< include 01-rolling-horizon.qmd >}}
-
-{{< include 02-multi-year-investment.qmd >}}
