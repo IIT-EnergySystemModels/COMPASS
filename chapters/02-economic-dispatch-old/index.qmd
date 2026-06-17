@@ -1,7 +1,0 @@
-# Economic Dispatch
-
-{{< include 01-description.qmd >}}
-
-{{< include 02-formulation.qmd >}}
-
-{{< include 04-example-in-julia.qmd >}}
