@@ -1,4 +1,4 @@
-# Generation Expansion Planning
+# Hydrothermal Scheduling
 
 {{< include 01-description.qmd >}}
 

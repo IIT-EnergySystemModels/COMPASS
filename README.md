@@ -20,16 +20,16 @@ The source code is available in this repository, and you can run the examples lo
 ├─ _quarto.yml
 ├─ index.qmd
 ├─ chapters/
-│  ├─ 01-primer/
+│  ├─ 01-chapter/
 │  │  ├─ index.qmd
-│  │  └─ 01-what-is-energy-system-modelling.qmd
-│  ├─ 02-economic-dispatch/
+│  │  └─ 01-description.qmd
+│  ├─ 02-chapter/
 │  │  ├─ index.qmd
 │  │  └─ 01-description.qmd
 │  ├─ ...
-│  ├─ 10-advanced-topics/
+│  ├─ 10-chapter/
 │  │  ├─ index.qmd
-│  │  └─ 03-good-optimisation-modelling-practices.qmd
+│  │  └─ 01-description.qmd
 │  └─ references.qmd
 ├─ examples/
 │  ├─ data/
