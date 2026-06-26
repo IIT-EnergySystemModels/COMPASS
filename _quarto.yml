@@ -37,6 +37,9 @@ format:
     number-sections: true
     code-copy: true
     code-overflow: wrap
+    css: styles.css
+    link-external-newwindow: true
+    link-external-icon: true
 
 execute:
   echo: true

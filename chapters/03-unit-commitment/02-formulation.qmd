@@ -1,3 +1,204 @@
 ## Formulation
 
-<!-- TODO: Add section content. -->
+Here we present the mathematical formulation of the unit commitment problem solved by the model.
+
+- D.A. Tejada-Arango, S. Lumbreras, P. Sánchez-Martín, and A. Ramos "Which Unit-Commitment Formulation is Best? A Systematic Comparison" IEEE Transactions on Power Systems 35 (4): 2926-2936, Jul 2020 [10.1109/TPWRS.2019.2962024](https://doi.org/10.1109/TPWRS.2019.2962024)
+
+## Indices
+
+::: {.tbl-fit}
+| Symbol   | Description                                             |
+|:---------|:--------------------------------------------------------|
+| $n$      | Load level                                              |
+| $\nu$    | Time step. Duration of each load level (e.g., 2 h, 3 h) |
+| $g$      | Generator (thermal or hydro unit or ESS)                |
+| $t$      | Thermal unit                                            |
+| $e$      | Energy Storage System (ESS)                             |
+:::
+
+## Parameters
+
+They are written in capital letters.
+
+**Demand**
+
+::: {.tbl-fit}
+| Symbol       | Description                                          | Unit  |
+|:-------------|:-----------------------------------------------------|:------|
+| $D_n$        | Demand                                               | GW    |
+| $DUR_n$      | Duration of each load level                          | h     |
+| $CENS$       | Cost of energy not served. Value of Lost Load (VoLL) | €/MWh |
+:::
+
+**Operating reserves**
+
+::: {.tbl-fit}
+| Symbol                     | Description                            | Unit |
+|:---------------------------|:---------------------------------------|:-----|
+| $UR_n,        DR_n$        | Upward and downward operating reserves | GW   |
+:::
+
+**Generation system**
+
+::: {.tbl-fit}
+| Symbol                              | Description                                                                                             | Unit       |
+|:------------------------------------|:--------------------------------------------------------------------------------------------------------|:-----------|
+| $\underline{CP}_g, \overline{GP}_g$ | Minimum load and maximum output of a generator                                                          | GW         |
+| $\overline{GC}_g$                   | Maximum consumption of an ESS                                                                           | GW         |
+| $CF_g, CV_g$                        | Fixed and variable cost of a generator. Variable cost includes fuel, O&M and emission cost              | €/h, €/MWh |
+| $RU_t, RD_t$                        | Ramp up and ramp down of a thermal unit                                                                 | MW/h       |
+| $TU_t, TD_t$                        | Minimum uptime and downtime of a thermal unit                                                           | h          |
+| $CSU_g, CSD_g$                      | Startup and shutdown cost of a committed unit                                                           | M€         |
+| $\tau_e$                            | Characteristic duration of the ESS (e.g., 24 h, 168 h, 672 h -for monthly-)                             | h          |
+| $EF_e$                              | Round-trip efficiency of the pump/turbine cycle of a hydro power plant or charge/discharge of a battery | p.u.       |
+| $I_e$                               | Capacity of an ESS (e.g., hydro power plant)                                                            | GWh        |
+| $EI_{ne}$                           | Energy inflows of an ESS (e.g., hydro power plant)                                                      | GWh        |
+:::
+
+## Variables
+
+They are written in lower letters.
+
+**Demand**
+
+::: {.tbl-fit}
+| Symbol         | Description       | Unit |
+|:---------------|:------------------|:-----|
+| $ens_n$        | Energy not served | GW   |
+:::
+
+**Generation system**
+
+::: {.tbl-fit}
+| Symbol                           | Description                                                               | Unit  |
+|:---------------------------------|:--------------------------------------------------------------------------|:------|
+| $gp_{ng},        gc_{ng}$        | Generator output (discharge if an ESS) and consumption (charge if an ESS) | GW    |
+| $p_{ng}$                         | Generator output of the second block (i.e., above the minimum load)       | GW    |
+| $ur_{ng},        dr_{ng}$        | Upward and downward operating reserves of a committed unit                | GW    |
+| $i_{ne}$                         | ESS stored energy (inventory)                                             | GWh   |
+| $s_{ne}$                         | ESS spilled energy                                                        | GWh   |
+| $uc_{nt}, su_{nt}, sd_{nt}$      | Commitment, startup and shutdown of generation unit per load level        | {0,1} |
+:::
+
+## Equations
+
+**Objective function**: minimization of operation cost for the scope of the model
+
+Generation operation cost [M€] («`eTotalTCost`», «`eTotalVCost`», «`eTotalECost`»)
+
+$$
+\sum_{n}{P DUR_n \left(\sum_g {CV_g gp_{ng}} + CENS\, ens_n\right)} + \sum_{ng}{\left(DUR_n CF_g uc_{ng} + CSU_g su_{ng} + CSD_g sd_{ng}\right)}
+$$ {#eq-total-cost}
+
+**Constraints**
+
+Balance of generation and demand [GW] («`eBalance`»)
+
+$$
+\sum_{g} gp_{ng} - \sum_{g} gc_{ng} + ens_n = D_n \quad \forall n
+$$ {#eq-balance}
+
+Upward and downward operating reserves [GW] («`eOperReserveUp`», `eOperReserveDw`»)
+
+$$
+\sum_g ur_{ng} \geq UR_n \quad \forall n
+$$ {#eq-oper-reserve-up}
+
+$$
+\sum_g dr_{ng} \geq DR_n \quad \forall n
+$$ {#eq-oper-reserve-dw}
+
+VRES units (i.e., those with linear variable cost equal to 0 and no storage capacity) do not contribute to the operating reserves.
+
+ESS energy inventory (only for load levels multiple of 24, 168, or 672 h, depending on the ESS type) [GWh] («`eESSInventory`»)
+
+$$
+i_{n-\tau_e,e} + \sum_{n' = n+\nu-\tau_e}^n DUR_n (EI_{ne} - qp_{ne} + EF_e gc_{ne}) = i_{ne} + s_{ne} \quad \forall ne
+$$ {#eq-ess-inventory}
+
+Maximum and minimum output of the second block of a committed unit (all except the VRES units) [p.u.] («`eMaxOutput2ndBlock`», `eMinOutput2ndBlock`»)
+
+- D.A. Tejada-Arango, S. Lumbreras, P. Sánchez-Martín, and A. Ramos "Which Unit-Commitment Formulation is Best? A Systematic Comparison" IEEE Transactions on Power Systems 35 (4):2926-2936 Jul 2020 [10.1109/TPWRS.2019.2962024](https://doi.org/10.1109/TPWRS.2019.2962024)
+- C. Gentile, G. Morales-España, and A. Ramos "A tight MIP formulation of the unit commitment problem with start-up and shut-down constraints" EURO Journal on Computational Optimization 5 (1), 177-201 Mar 2017. [10.1007/s13675-016-0066-y](http://dx.doi.org/10.1007/s13675-016-0066-y)
+- G. Morales-España, A. Ramos, and J. Garcia-Gonzalez "An MIP Formulation for Joint Market-Clearing of Energy and Reserves Based on Ramp Scheduling" IEEE Transactions on Power Systems 29 (1): 476-488, Jan 2014. [10.1109/TPWRS.2013.2259601](http://dx.doi.org/10.1109/TPWRS.2013.2259601)
+- G. Morales-España, J.M. Latorre, and A. Ramos "Tight and Compact MILP Formulation for the Thermal Unit Commitment Problem" IEEE Transactions on Power Systems 28 (4): 4897-4908, Nov 2013. [10.1109/TPWRS.2013.2251373](http://dx.doi.org/10.1109/TPWRS.2013.2251373)
+
+$$
+\frac{p_{ng} + ur_{ng}}{\overline{GP}_g - \underline{GP}_g} \leq uc_{ng} \quad \forall ng
+$$ {#eq-max-output-2nd-block}
+
+$$
+\frac{p_{ng} - dr_{ng}}{\overline{GP}_g - \underline{GP}_g} \geq 0       \quad \forall ng
+$$ {#eq-min-output-2nd-block}
+
+Total output of a committed unit (all except the VRES units) [GW] («`eTotalOutput`»)
+
+$$
+\frac{qp_{ng}}{\underline{GP}_g} = uc_{ng} + \frac{p_{ng}}{\underline{GP}_g} \quad \forall ng
+$$ {#eq-total-output}
+
+Logical relation between commitment, startup, and shutdown status of a committed unit (all except the VRE units) [p.u.] («`eUCStrShut`»)
+
+$$
+uc_{ng} - uc_{n-\nu,g} = su_{ng} - sd_{ng} \quad \forall ng
+$$ {#eq-uc-startup-shutdown}
+
+Initial commitment of the units is determined by the model based on the merit order loading, including the VRES and ESS units.
+
+Maximum ramp up and ramp down for the second block of a thermal unit [p.u.] («`eRampUp`», `eRampDw`»)
+
+- P. Damcı-Kurt, S. Küçükyavuz, D. Rajan, and A. Atamtürk, “A polyhedral study of production ramping,” Math. Program., vol. 158, no. 1–2, pp. 175–205, Jul. 2016. [10.1007/s10107-015-0919-9](https://doi.org/10.1007/s10107-015-0919-9)
+
+$$
+\frac{p_{nt} - p_{n-\nu,t} + ur_{nt}}{DUR_n RU_t} \leq   uc_{nt}      - su_{nt} \quad \forall nt
+$$ {#eq-ramp-up}
+
+$$
+\frac{p_{nt} - p_{n-\nu,t} - dr_{nt}}{DUR_n RD_t} \geq - uc_{n-\nu,t} + sd_{nt} \quad \forall nt
+$$ {#eq-ramp-dw}
+
+Minimum up time and down time of thermal unit [h] («`eMinUpTime`», `eMinDownTime`»)
+
+- D. Rajan and S. Takriti, “Minimum up/down polytopes of the unit commitment problem with start-up costs,” IBM, New York, Technical Report RC23628, 2005. <https://pdfs.semanticscholar.org/b886/42e36b414d5929fed48593d0ac46ae3e2070.pdf>
+
+$$
+\sum_{n'=n+\nu-TU_t}^n su_{n't} \leq     uc_{nt} \quad \forall nt
+$$ {#eq-min-up-time}
+
+$$
+\sum_{n'=n+\nu-TD_t}^n sd_{n't} \leq 1 - uc_{nt} \quad \forall nt
+$$ {#eq-min-down-time}
+
+Bounds on generation variables [GW]
+
+$$
+0 \leq qp_{ng} \leq \overline{GP}_g                    \quad \forall ng
+$$ {#eq-bound-qp}
+
+$$
+0 \leq qc_{ne} \leq \overline{GC}_e                    \quad \forall ne
+$$ {#eq-bound-qc}
+
+$$
+0 \leq ur_{ng} \leq \overline{CP}_g - \underline{GP}_g \quad \forall ng
+$$ {#eq-bound-ur}
+
+$$
+0 \leq dr_{ng} \leq \overline{CP}_g - \underline{GP}_g \quad \forall ng
+$$ {#eq-bound-dr}
+
+$$
+0 \leq  p_{ng} \leq \overline{GP}_g - \underline{GP}_g \quad \forall ng
+$$ {#eq-bound-p}
+
+$$
+0 \leq i_{ne} \leq I_e \quad \forall ne
+$$ {#eq-bound-i}
+
+$$
+0 \leq s_{ne} \quad \forall ne
+$$ {#eq-bound-s}
+
+$$
+0 \leq ens_n \leq D_n \quad \forall n
+$$ {#eq-bound-ens}

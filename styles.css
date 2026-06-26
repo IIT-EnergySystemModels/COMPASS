@@ -1,0 +1,14 @@
+/* Nomenclature tables: size columns to their content instead of
+   stretching to the full page width (overrides Bootstrap's .table width:100%),
+   but never wider than the viewport — wrap text when it would overflow. */
+.tbl-fit table {
+  width: auto;
+  max-width: 100%;
+}
+
+/* Let cell text wrap so a wide table shrinks to fit the browser. */
+.tbl-fit td,
+.tbl-fit th {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
