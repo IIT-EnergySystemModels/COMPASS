@@ -2,7 +2,7 @@
 
 Here we present the mathematical formulation of the unit commitment problem solved by the model.
 
-- D.A. Tejada-Arango, S. Lumbreras, P. Sánchez-Martín, and A. Ramos "Which Unit-Commitment Formulation is Best? A Systematic Comparison" IEEE Transactions on Power Systems 35 (4): 2926-2936, Jul 2020 [10.1109/TPWRS.2019.2962024](https://doi.org/10.1109/TPWRS.2019.2962024)
+- D.A. Tejada-Arango, S. Lumbreras, P. Sánchez-Martín, and A. Ramos "Which Unit-Commitment Formulation is Best? A Systematic Comparison" IEEE Transactions on Power Systems 35 (4): 2926-2936, Jul 2020. [10.1109/TPWRS.2019.2962024](https://doi.org/10.1109/TPWRS.2019.2962024)
 
 ## Indices
 
@@ -18,7 +18,7 @@ Here we present the mathematical formulation of the unit commitment problem solv
 
 ## Parameters
 
-They are written in capital letters.
+They are written in uppercase letters.
 
 **Demand**
 
@@ -43,10 +43,10 @@ They are written in capital letters.
 ::: {.tbl-fit}
 | Symbol                              | Description                                                                                             | Unit       |
 |:------------------------------------|:--------------------------------------------------------------------------------------------------------|:-----------|
-| $\underline{CP}_g, \overline{GP}_g$ | Minimum load and maximum output of a generator                                                          | GW         |
+| $\underline{GP}_g, \overline{GP}_g$ | Minimum load and maximum output of a generator                                                          | GW         |
 | $\overline{GC}_g$                   | Maximum consumption of an ESS                                                                           | GW         |
 | $CF_g, CV_g$                        | Fixed and variable cost of a generator. Variable cost includes fuel, O&M and emission cost              | €/h, €/MWh |
-| $RU_t, RD_t$                        | Ramp up and ramp down of a thermal unit                                                                 | MW/h       |
+| $RU_t, RD_t$                        | Ramp-up and ramp-down of a thermal unit                                                                 | MW/h       |
 | $TU_t, TD_t$                        | Minimum uptime and downtime of a thermal unit                                                           | h          |
 | $CSU_g, CSD_g$                      | Startup and shutdown cost of a committed unit                                                           | M€         |
 | $\tau_e$                            | Characteristic duration of the ESS (e.g., 24 h, 168 h, 672 h -for monthly-)                             | h          |
@@ -57,7 +57,7 @@ They are written in capital letters.
 
 ## Variables
 
-They are written in lower letters.
+They are written in lowercase letters.
 
 **Demand**
 
@@ -82,12 +82,12 @@ They are written in lower letters.
 
 ## Equations
 
-**Objective function**: minimization of operation cost for the scope of the model
+**Objective function**: minimization of operation cost over the model horizon
 
 Generation operation cost [M€] («`eTotalTCost`», «`eTotalVCost`», «`eTotalECost`»)
 
 $$
-\sum_{n}{P DUR_n \left(\sum_g {CV_g gp_{ng}} + CENS\, ens_n\right)} + \sum_{ng}{\left(DUR_n CF_g uc_{ng} + CSU_g su_{ng} + CSD_g sd_{ng}\right)}
+\sum_{n}{DUR_n \left(\sum_g {CV_g gp_{ng}} + CENS\, ens_n\right)} + \sum_{ng}{\left(DUR_n CF_g uc_{ng} + CSU_g su_{ng} + CSD_g sd_{ng}\right)}
 $$ {#eq-total-cost}
 
 **Constraints**
@@ -98,7 +98,7 @@ $$
 \sum_{g} gp_{ng} - \sum_{g} gc_{ng} + ens_n = D_n \quad \forall n
 $$ {#eq-balance}
 
-Upward and downward operating reserves [GW] («`eOperReserveUp`», `eOperReserveDw`»)
+Upward and downward operating reserves [GW] («`eOperReserveUp`», «`eOperReserveDw`»)
 
 $$
 \sum_g ur_{ng} \geq UR_n \quad \forall n
@@ -108,15 +108,15 @@ $$
 \sum_g dr_{ng} \geq DR_n \quad \forall n
 $$ {#eq-oper-reserve-dw}
 
-VRES units (i.e., those with linear variable cost equal to 0 and no storage capacity) do not contribute to the operating reserves.
+VRES units (i.e., those with linear variable cost equal to 0 and no storage capacity) do not contribute to operating reserves.
 
 ESS energy inventory (only for load levels multiple of 24, 168, or 672 h, depending on the ESS type) [GWh] («`eESSInventory`»)
 
 $$
-i_{n-\tau_e,e} + \sum_{n' = n+\nu-\tau_e}^n DUR_n (EI_{ne} - qp_{ne} + EF_e gc_{ne}) = i_{ne} + s_{ne} \quad \forall ne
+i_{n-\tau_e,e} + \sum_{n' = n+\nu-\tau_e}^n DUR_n (EI_{ne} - gp_{ne} + EF_e gc_{ne}) = i_{ne} + s_{ne} \quad \forall ne
 $$ {#eq-ess-inventory}
 
-Maximum and minimum output of the second block of a committed unit (all except the VRES units) [p.u.] («`eMaxOutput2ndBlock`», `eMinOutput2ndBlock`»)
+Maximum and minimum output of the second block of a committed unit (all except the VRES units) [p.u.] («`eMaxOutput2ndBlock`», «`eMinOutput2ndBlock`»)
 
 - D.A. Tejada-Arango, S. Lumbreras, P. Sánchez-Martín, and A. Ramos "Which Unit-Commitment Formulation is Best? A Systematic Comparison" IEEE Transactions on Power Systems 35 (4):2926-2936 Jul 2020 [10.1109/TPWRS.2019.2962024](https://doi.org/10.1109/TPWRS.2019.2962024)
 - C. Gentile, G. Morales-España, and A. Ramos "A tight MIP formulation of the unit commitment problem with start-up and shut-down constraints" EURO Journal on Computational Optimization 5 (1), 177-201 Mar 2017. [10.1007/s13675-016-0066-y](http://dx.doi.org/10.1007/s13675-016-0066-y)
@@ -134,20 +134,20 @@ $$ {#eq-min-output-2nd-block}
 Total output of a committed unit (all except the VRES units) [GW] («`eTotalOutput`»)
 
 $$
-\frac{qp_{ng}}{\underline{GP}_g} = uc_{ng} + \frac{p_{ng}}{\underline{GP}_g} \quad \forall ng
+\frac{gp_{ng}}{\underline{GP}_g} = uc_{ng} + \frac{p_{ng}}{\underline{GP}_g} \quad \forall ng
 $$ {#eq-total-output}
 
-Logical relation between commitment, startup, and shutdown status of a committed unit (all except the VRE units) [p.u.] («`eUCStrShut`»)
+Logical relation between commitment, startup, and shutdown status of a committed unit (all except the VRES units) [p.u.] («`eUCStrShut`»)
 
 $$
 uc_{ng} - uc_{n-\nu,g} = su_{ng} - sd_{ng} \quad \forall ng
 $$ {#eq-uc-startup-shutdown}
 
-Initial commitment of the units is determined by the model based on the merit order loading, including the VRES and ESS units.
+Initial commitment of the units is determined by the model based on the merit-order loading, including the VRES and ESS units.
 
-Maximum ramp up and ramp down for the second block of a thermal unit [p.u.] («`eRampUp`», `eRampDw`»)
+Maximum ramp-up and ramp-down for the second block of a thermal unit [p.u.] («`eRampUp`», «`eRampDw`»)
 
-- P. Damcı-Kurt, S. Küçükyavuz, D. Rajan, and A. Atamtürk, “A polyhedral study of production ramping,” Math. Program., vol. 158, no. 1–2, pp. 175–205, Jul. 2016. [10.1007/s10107-015-0919-9](https://doi.org/10.1007/s10107-015-0919-9)
+- P. Damcı-Kurt, S. Küçükyavuz, D. Rajan, and A. Atamtürk, “A polyhedral study of production ramping,” Math. Program., vol. 158, no. 1–2, pp. 175–205, Jul 2016. [10.1007/s10107-015-0919-9](https://doi.org/10.1007/s10107-015-0919-9)
 
 $$
 \frac{p_{nt} - p_{n-\nu,t} + ur_{nt}}{DUR_n RU_t} \leq   uc_{nt}      - su_{nt} \quad \forall nt
@@ -157,7 +157,7 @@ $$
 \frac{p_{nt} - p_{n-\nu,t} - dr_{nt}}{DUR_n RD_t} \geq - uc_{n-\nu,t} + sd_{nt} \quad \forall nt
 $$ {#eq-ramp-dw}
 
-Minimum up time and down time of thermal unit [h] («`eMinUpTime`», `eMinDownTime`»)
+Minimum uptime and downtime of a thermal unit [h] («`eMinUpTime`», «`eMinDownTime`»)
 
 - D. Rajan and S. Takriti, “Minimum up/down polytopes of the unit commitment problem with start-up costs,” IBM, New York, Technical Report RC23628, 2005. <https://pdfs.semanticscholar.org/b886/42e36b414d5929fed48593d0ac46ae3e2070.pdf>
 
@@ -172,19 +172,19 @@ $$ {#eq-min-down-time}
 Bounds on generation variables [GW]
 
 $$
-0 \leq qp_{ng} \leq \overline{GP}_g                    \quad \forall ng
+0 \leq gp_{ng} \leq \overline{GP}_g                    \quad \forall ng
 $$ {#eq-bound-qp}
 
 $$
-0 \leq qc_{ne} \leq \overline{GC}_e                    \quad \forall ne
+0 \leq gc_{ne} \leq \overline{GC}_e                    \quad \forall ne
 $$ {#eq-bound-qc}
 
 $$
-0 \leq ur_{ng} \leq \overline{CP}_g - \underline{GP}_g \quad \forall ng
+0 \leq ur_{ng} \leq \overline{GP}_g - \underline{GP}_g \quad \forall ng
 $$ {#eq-bound-ur}
 
 $$
-0 \leq dr_{ng} \leq \overline{CP}_g - \underline{GP}_g \quad \forall ng
+0 \leq dr_{ng} \leq \overline{GP}_g - \underline{GP}_g \quad \forall ng
 $$ {#eq-bound-dr}
 
 $$
